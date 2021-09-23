@@ -186,7 +186,7 @@
 
     {% if resource.temporal_extent_start and resource.temporal_extent_end %}
     <dt>{% trans "Temporal Extent" %}</dt>
-    <dd>{{ resource.temporal_extent_start }} - {{ resource.temporal_extent_end }}</dd>
+    <dd>{{ resource.temporal_extent_start | date:'F Y' }} - {{ resource.temporal_extent_end | date:'F Y' }}</dd>
     {% endif %}
 
     {% if resource.data_quality_statement %}

@@ -436,16 +436,16 @@ class ResourceBaseForm(TranslationModelForm):
         label=_("temporal extent start"),
         required=False,
         localize=True,
-        input_formats=['%Y-%m-%d %H:%M %p'],
-        widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD HH:mm a"})
+        input_formats=['%Y-%m-%d'],
+        widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD"})
     )
 
     temporal_extent_end = forms.DateTimeField(
         label=_("temporal extent end"),
         required=False,
         localize=True,
-        input_formats=['%Y-%m-%d %H:%M %p'],
-        widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD HH:mm a"})
+        input_formats=['%Y-%m-%d'],
+        widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD"})
     )
 
     poc = forms.ModelChoiceField(

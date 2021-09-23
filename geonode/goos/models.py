@@ -15,7 +15,7 @@ class Eov(models.Model):
 class EovResource(models.Model):
 
     eovs = models.ManyToManyField(Eov, blank=True)
-    
+
     readiness_requirements = models.CharField(
         max_length=100,
         choices=READINESS_LEVELS,
