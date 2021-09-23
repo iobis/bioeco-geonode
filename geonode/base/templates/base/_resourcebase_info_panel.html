@@ -31,6 +31,24 @@
     <dd itemprop="description">{{ resource.abstract|safe }}</dd>
     {% endif %}
 
+    {% if resource.eovs.all %}
+    <dt>{% trans "EOVs" %}</dt>
+    <dd>
+      {% for eov in resource.eovs.all %}
+        {{ eov }}
+      {% endfor %}
+    </dd>
+    {% endif %}
+
+    <dt>{% trans "Readiness level (requirements)" %}</dt>
+    <dd>{{ resource.readiness_requirements }}</dd>
+
+    <dt>{% trans "Readiness level (coordination)" %}</dt>
+    <dd>{{ resource.readiness_coordination }}</dd>
+
+    <dt>{% trans "Readiness level (data)" %}</dt>
+    <dd>{{ resource.readiness_data }}</dd>
+
     {% if resource.date %}
     {% if resource.date_type == 'creation' %}
     <dt>{% trans "Creation Date" %}</dt>
@@ -94,15 +112,6 @@
           {{ region.name }}
         </a>
         {% if not forloop.last %},{% endif %}
-      {% endfor %}
-    </dd>
-    {% endif %}
-
-    {% if resource.eovs.all %}
-    <dt>{% trans "EOVs" %}</dt>
-    <dd>
-      {% for eov in resource.eovs.all %}
-        {{ eov }}
       {% endfor %}
     </dd>
     {% endif %}
