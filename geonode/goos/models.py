@@ -35,5 +35,7 @@ class EovResource(models.Model):
         null=True
     )
 
+    url = models.URLField(max_length=2000, null=True, blank=True)
+
     class Meta:
         abstract = True
