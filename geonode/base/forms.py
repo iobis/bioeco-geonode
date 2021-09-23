@@ -398,24 +398,25 @@ class ResourceBaseForm(TranslationModelForm):
         required=False,
         widget=TinyMCE())
 
-    purpose = forms.CharField(
-        label=_("Purpose"),
-        required=False,
-        widget=TinyMCE())
+    # purpose = forms.CharField(
+    #     label=_("Purpose"),
+    #     required=False,
+    #     widget=TinyMCE())
 
-    constraints_other = forms.CharField(
-        label=_("Other constraints"),
-        required=False,
-        widget=TinyMCE())
+    # constraints_other = forms.CharField(
+    #     label=_("Other constraints"),
+    #     required=False,
+    #     widget=TinyMCE())
 
-    supplemental_information = forms.CharField(
-        label=_('Supplemental information'),
-        required=False,
-        widget=TinyMCE())
-    data_quality_statement = forms.CharField(
-        label=_("Data quality statement"),
-        required=False,
-        widget=TinyMCE())
+    # supplemental_information = forms.CharField(
+    #     label=_('Supplemental information'),
+    #     required=False,
+    #     widget=TinyMCE())
+    
+    # data_quality_statement = forms.CharField(
+    #     label=_("Data quality statement"),
+    #     required=False,
+    #     widget=TinyMCE())
 
     owner = forms.ModelChoiceField(
         empty_label=_("Owner"),
@@ -424,12 +425,12 @@ class ResourceBaseForm(TranslationModelForm):
         queryset=get_user_model().objects.exclude(username='AnonymousUser'),
         widget=autocomplete.ModelSelect2(url='autocomplete_profile'))
 
-    date = forms.DateTimeField(
-        label=_("Date"),
-        localize=True,
-        input_formats=['%Y-%m-%d %H:%M %p'],
-        widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD HH:mm a"})
-    )
+    # date = forms.DateTimeField(
+    #     label=_("Date"),
+    #     localize=True,
+    #     input_formats=['%Y-%m-%d %H:%M %p'],
+    #     widget=ResourceBaseDateTimePicker(options={"format": "YYYY-MM-DD HH:mm a"})
+    # )
 
     temporal_extent_start = forms.DateTimeField(
         label=_("temporal extent start"),
@@ -545,7 +546,29 @@ class ResourceBaseForm(TranslationModelForm):
             'tkeywords',
             'users_geolimits',
             'groups_geolimits',
-            'dirty_state'
+            'dirty_state',
+            'purpose',
+            'attribution',
+            'date',
+            'date_type',
+            'restriction_code_type',
+            'constraints_other',
+            'language',
+            'spatial_representation_type',
+            'data_quality_statement',
+            'supplemental_information',
+            'group',
+            'thumbnail_url',
+            'resource_type',
+            'is_approved',
+            'metadata_only',
+            'typename',
+            'is_mosaic',
+            'has_time',
+            'has_elevation',
+            'time_regex',
+            'elevation_regex',
+            'constraints_other'
         )
 
 

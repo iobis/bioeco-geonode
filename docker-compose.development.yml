@@ -33,6 +33,7 @@ services:
       start_period: 60s
     environment:
       - IS_CELERY=False
+      - DISPLAY_RATINGS=False
     entrypoint: ["/usr/src/geonode/entrypoint.sh"]
     command: "uwsgi --ini /usr/src/geonode/uwsgi.ini --py-autoreload 1"
 

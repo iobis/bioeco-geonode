@@ -9,3 +9,11 @@ class Eov(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class EovResource(models.Model):
+
+    eovs = models.ManyToManyField(Eov, blank=True)
+
+    class Meta:
+        abstract = True

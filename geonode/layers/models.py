@@ -45,6 +45,8 @@ from geonode.notifications_helper import (
 from ..services.enumerations import CASCADED
 from ..services.enumerations import INDEXED
 
+from geonode.goos.models import EovResource
+
 logger = logging.getLogger("geonode.layers.models")
 
 shp_exts = ['.shp', ]
@@ -149,7 +151,7 @@ class UploadSession(models.Model):
         return str(self.__str__())
 
 
-class Layer(ResourceBase):
+class Layer(ResourceBase, EovResource):
 
     """
     Layer (inherits ResourceBase fields)

@@ -65,8 +65,9 @@ from geonode.base.enumerations import (
     LINK_TYPES,
     ALL_LANGUAGES,
     HIERARCHY_LEVELS,
-    UPDATE_FREQUENCIES,
+    #UPDATE_FREQUENCIES,
     DEFAULT_SUPPLEMENTAL_INFORMATION)
+from geonode.goos.enumerations import UPDATE_FREQUENCIES
 from geonode.base.bbox_utils import BBOXHelper, polygon_from_bbox
 from geonode.utils import (
     is_monochromatic_image,

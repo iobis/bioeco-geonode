@@ -50,11 +50,6 @@
       {% endif %}
     {% endif %}
 
-    {% if resource.display_type %}
-    <dt>{% trans "Type" %}</dt>
-    <dd>{{ resource.display_type }}</dd>
-    {% endif %}
-
     {% if resource.keywords.count > 0 or resource.tkeywords.count > 0 %}
     <dt>{% trans "Keywords" %}</dt>
       <dd itemprop="keywords">
@@ -103,6 +98,15 @@
     </dd>
     {% endif %}
 
+    {% if resource.eovs.all %}
+    <dt>{% trans "EOVs" %}</dt>
+    <dd>
+      {% for eov in resource.eovs.all %}
+        {{ eov }}
+      {% endfor %}
+    </dd>
+    {% endif %}
+
     {% if resource.owner %}
     <dt>{% trans "Responsible" %}</dt>
     <dd><a itemprop="author" href="{{ resource.owner.get_absolute_url }}">{{ resource.owner.username }}</a></dd>
@@ -123,20 +127,9 @@
     <dd>{{ resource.doi }}</dd>
     {% endif %}
 
-    {% if resource.attribution %}
-    <dt>{% trans "Attribution" %}</dt>
-    <dd>{{ resource.attribution }}</dd>
-    {% endif %}
-
   </dl>
 
   <dl class="dl-horizontal">
-    <dt><a href="#more" data-toggle="collapse" data-target=".more">{% trans "More info" %}</a></dt>
-    <dd>-</dd>
-  </dl>
-
-  <dl class="dl-horizontal">
-    <div class="more collapse">
 
     {% if resource.srid and SRID_DETAIL == 'below' %}
     <dt>{% trans "SRID" %}</dt>
@@ -180,11 +173,6 @@
     <dd>{{ resource.purpose|safe }}</dd>
     {% endif %}
 
-    {% if resource.language %}
-    <dt>{% trans "Language" %}</dt>
-    <dd>{{ resource.language_title|safe }}</dd>
-    {% endif %}
-
     {% if resource.temporal_extent_start and resource.temporal_extent_end %}
     <dt>{% trans "Temporal Extent" %}</dt>
     <dd>{{ resource.temporal_extent_start }} - {{ resource.temporal_extent_end }}</dd>
@@ -204,8 +192,6 @@
     <dt>{% trans "Spatial Representation Type" %}</dt>
     <dd>{{ resource.spatial_representation_type|safe }}</dd>
     {% endif %}
-
-  </div>
 
   </dl>
 
