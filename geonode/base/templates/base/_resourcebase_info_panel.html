@@ -49,6 +49,7 @@
     <dt>{% trans "Readiness level (data)" %}</dt>
     <dd>{{ resource.readiness_data }}</dd>
 
+    <!--
     {% if resource.date %}
     {% if resource.date_type == 'creation' %}
     <dt>{% trans "Creation Date" %}</dt>
@@ -67,7 +68,8 @@
         <dd itemprop="dateModified" datetime="{{ resource.date|date:"c"}}">{{ resource.date }}</dd>
       {% endif %}
     {% endif %}
-
+    -->
+    
     {% if resource.keywords.count > 0 or resource.tkeywords.count > 0 %}
     <dt>{% trans "Keywords" %}</dt>
       <dd itemprop="keywords">
