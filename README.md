@@ -23,9 +23,19 @@ docker exec -it django4geonode /bin/bash
 tail -f /var/log/geonode.log
 ```
 
+### Importing layers
+
+```
+python manage.py importlayers import
+```
+
 ### Dumping and loading data
 
 ```
-python manage.py dumpdata goos.Eov > geonode/goos/fixtures/eov.json
+python manage.py dumpdata goos.Eov > eov.json
+python manage.py dumpdata layers.Layer > layers.json
+python manage.py dumpdata base.ResourceBase > resourcebase.json
+python manage.py dumpdata base.ContactRole > contactrole.json
+
 python manage.py loaddata users.json
 ```
