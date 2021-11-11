@@ -23,6 +23,12 @@ docker exec -it django4geonode /bin/bash
 tail -f /var/log/geonode.log
 ```
 
+All Docker logs:
+
+```
+docker-compose -f docker-compose.development.yml logs --tail=0 --follow
+```
+
 ### Importing layers
 
 ```
