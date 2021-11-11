@@ -39,9 +39,11 @@
     {% if resource.eovs.all %}
     <dt>{% trans "EOVs" %}</dt>
     <dd>
-      {% for eov in resource.eovs.all %}
-        {{ eov }}
-      {% endfor %}
+      <ul>
+        {% for eov in resource.eovs.all %}
+          <li><a href="{{ eov.url }}" target="_blank">{{ eov.name }}</a></li>
+        {% endfor %}
+      </ul>
     </dd>
     {% endif %}
 
