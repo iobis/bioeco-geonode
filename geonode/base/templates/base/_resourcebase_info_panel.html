@@ -31,10 +31,12 @@
     <dd itemprop="description">{{ resource.abstract|safe }}</dd>
     {% endif %}
 
-    {% if resource.url %}
     <dt>{% trans "URL" %}</dt>
-    <dd><a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a></dd>
-    {% endif %}
+    <dd>
+      {% if resource.url %}
+        <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
+      {% endif %}
+    </dd>
 
     {% if resource.eovs.all %}
     <dt>{% trans "EOVs" %}</dt>
@@ -48,13 +50,31 @@
     {% endif %}
 
     <dt>{% trans "Readiness level (requirements)" %}</dt>
-    <dd>{{ resource.readiness_requirements }}</dd>
+    <dd>
+      {% if resource.readiness_requirements %}
+        {{ resource.readiness_requirements }}
+      {% else %}
+        Not provided
+      {% endif %}
+    </dd>
 
     <dt>{% trans "Readiness level (coordination)" %}</dt>
-    <dd>{{ resource.readiness_coordination }}</dd>
+    <dd>
+      {% if resource.readiness_coordination %}
+        {{ resource.readiness_coordination }}
+      {% else %}
+        Not provided
+      {% endif %}
+    </dd>
 
     <dt>{% trans "Readiness level (data)" %}</dt>
-    <dd>{{ resource.readiness_data }}</dd>
+    <dd>
+      {% if resource.readiness_data %}
+        {{ resource.readiness_data }}
+      {% else %}
+        Not provided
+      {% endif %}
+    </dd>
 
     <!--
     {% if resource.date %}
