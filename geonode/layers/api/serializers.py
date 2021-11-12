@@ -99,3 +99,16 @@ class LayerSerializer(ResourceBaseSerializer):
     styles = DynamicRelationField(StyleSerializer, embed=True, many=True, read_only=True)
 
     attribute_set = DynamicRelationField(AttributeSerializer, embed=True, many=True, read_only=True)
+
+
+class MinimalLayerSerializer(DynamicModelSerializer):
+
+    class Meta:
+        model = Layer
+        name = 'layer'
+        view_name = 'layers-list'
+        fields = (
+            'pk', 'name', 'eovs'
+        )
+
+    name = serializers.CharField(read_only=True)

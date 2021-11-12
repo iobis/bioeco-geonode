@@ -31,7 +31,7 @@ from geonode.layers.models import Layer
 
 from geonode.goos.api.filters import EovFilter
 
-from .serializers import LayerSerializer
+from .serializers import LayerSerializer, MinimalLayerSerializer
 from .permissions import LayerPermissionsFilter
 
 import logging
@@ -51,4 +51,16 @@ class LayerViewSet(DynamicModelViewSet):
     ]
     queryset = Layer.objects.all()
     serializer_class = LayerSerializer
+    pagination_class = GeoNodeApiPagination
+
+
+class MinimalLayerViewSet(DynamicModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, OAuth2Authentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    filter_backends = [
+        DynamicFilterBackend, DynamicSortingFilter, DynamicSearchFilter,
+        ExtentFilter, LayerPermissionsFilter, EovFilter
+    ]
+    queryset = Layer.objects.all()
+    serializer_class = MinimalLayerSerializer
     pagination_class = GeoNodeApiPagination
