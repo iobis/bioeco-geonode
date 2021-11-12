@@ -28,8 +28,14 @@ class Command(BaseCommand):
             # create spatial table
 
             cur.execute("""
+                drop table if exists public._all_layers
+            """)
+            cur.execute("""
                 create table if not exists public._all_layers
-                (pk int4, name varchar(128), eovs int4[], readiness_coordination varchar(100), readiness_data varchar(100), readiness_requirements varchar(100), the_geom geometry)
+                (pk int4, name varchar(128), eovs int4[], readiness_coordination varchar(100), readiness_data varchar(100), readiness_requirements varchar(100))
+            """)
+            cur.execute("""
+                select public.AddGeometryColumn('public', '_all_layers', 'the_geom', 4326, 'GeometryCollection', 2)
             """)
             cur.execute("""
                 delete from public._all_layers
@@ -37,13 +43,13 @@ class Command(BaseCommand):
 
             # create indexes
 
-            cur.execute("create index ix_all_pk on public._all_layers using btree (pk)")
-            cur.execute("create index ix_all_name on public._all_layers using btree (name)")
-            cur.execute("create index ix_all_coordination on public._all_layers using btree (readiness_coordination)")
-            cur.execute("create index ix_all_data on public._all_layers using btree (readiness_data)")
-            cur.execute("create index ix_all_requirements on public._all_layers using btree (readiness_requirements)")
-            cur.execute("create index ix_all_eovs on public._all_layers using gin (eovs)")
-            cur.execute("create index ix_all_geom on public._all_layers using gist (the_geom)")
+            cur.execute("create index if not exists ix_all_pk on public._all_layers using btree (pk)")
+            cur.execute("create index if not exists ix_all_name on public._all_layers using btree (name)")
+            cur.execute("create index if not exists ix_all_coordination on public._all_layers using btree (readiness_coordination)")
+            cur.execute("create index if not exists ix_all_data on public._all_layers using btree (readiness_data)")
+            cur.execute("create index if not exists ix_all_requirements on public._all_layers using btree (readiness_requirements)")
+            cur.execute("create index if not exists ix_all_eovs on public._all_layers using gin (eovs)")
+            cur.execute("create index if not exists ix_all_geom on public._all_layers using gist (the_geom)")
 
             # get layer table names
 
@@ -68,7 +74,7 @@ class Command(BaseCommand):
                             %s as readiness_coordination,
                             %s as readiness_data,
                             %s as readiness_requirements,
-                            the_geom
+                            ST_ForceCollection(st_transform(the_geom, 4326)) as the_geom
                         from public.""" + layer.name, (layer.pk, layer.name, eovs, layer.readiness_coordination, layer.readiness_data, layer.readiness_requirements)
                     )
                 else:
