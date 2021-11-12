@@ -29,6 +29,8 @@ from geonode.base.api.permissions import IsOwnerOrReadOnly
 from geonode.base.api.pagination import GeoNodeApiPagination
 from geonode.layers.models import Layer
 
+from geonode.goos.api.filters import EovFilter
+
 from .serializers import LayerSerializer
 from .permissions import LayerPermissionsFilter
 
@@ -45,7 +47,7 @@ class LayerViewSet(DynamicModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [
         DynamicFilterBackend, DynamicSortingFilter, DynamicSearchFilter,
-        ExtentFilter, LayerPermissionsFilter
+        ExtentFilter, LayerPermissionsFilter, EovFilter
     ]
     queryset = Layer.objects.all()
     serializer_class = LayerSerializer
