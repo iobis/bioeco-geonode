@@ -5,6 +5,7 @@ from geonode.goos.enumerations import READINESS_LEVELS
 class Eov(models.Model):
 
     name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField()
     url = models.URLField(max_length=200, null=True, blank=True)
 
