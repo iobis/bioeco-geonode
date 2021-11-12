@@ -45,3 +45,18 @@ python manage.py dumpdata base.ContactRole > contactrole.json
 
 python manage.py loaddata users.json
 ```
+
+### Setup GeoServer
+
+Create SQL view:
+
+- 
+
+MVT support:
+
+```
+docker exec -it geoserver4geonode /bin/bash
+cd /usr/local/tomcat/webapps/geoserver/WEB-INF/lib
+wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.18.3/extensions/geoserver-2.18.3-vectortiles-plugin.zip
+unzip geoserver-2.18.3-vectortiles-plugin.zip
+```
