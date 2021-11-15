@@ -19,11 +19,11 @@
 {% if custom_theme.welcome_theme == 'JUMBOTRON_BG' or not slides %}
 <div class="jumbotron">
   <div class="container gn-container">
-      {% with jumbotron_welcome_title=custom_theme.jumbotron_welcome_title|default:"Welcome"|template_trans %}
+      {% with jumbotron_welcome_title=custom_theme.jumbotron_welcome_title|default:"Welcome to the GOOS Biology and Ecosystems GeoNode"|template_trans %}
       <h1>{% trans jumbotron_welcome_title %}</h1>
       {% endwith %}
       <p></p>
-      {% with jumbotron_welcome_content=custom_theme.jumbotron_welcome_content|default:"GeoNode is an open source platform for sharing geospatial data and maps."|template_trans %}
+      {% with jumbotron_welcome_content=custom_theme.jumbotron_welcome_content|default:"The GOOS Biology and Ecosystems Panel is made up of biology and ecosystem experts from around the world who provide guidance to the GOOS community. It aims to provide a better, clearer understanding of marine life to meet universal goals in sustainable development and conservation."|template_trans %}
       <p>{% trans jumbotron_welcome_content %}</p>
       {% endwith %}
       {% if not custom_theme.jumbotron_cta_hide %}
@@ -93,7 +93,7 @@
       {% else %}
       <div class="big-search">
       	<div class="container">
-      		<h1>{% trans "Search for Data." %}</h1>
+      		<h1>{% trans "Search for Monitoring Programmes." %}</h1>
       		<div class="search">
       			<form id="main_search" action="{% url "search" %}" >
       				<span class="fa fa-search fa-3x"></span>

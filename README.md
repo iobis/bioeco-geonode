@@ -29,6 +29,13 @@ All Docker logs:
 docker-compose -f docker-compose.development.yml logs --tail=0 --follow
 ```
 
+Check GeoServer logs:
+
+```
+docker exec -it geoserver4geonode /bin/bash
+tail -f /geoserver_data/data/logs/geoserver.log
+```
+
 ### Importing layers
 
 ```
@@ -60,3 +67,11 @@ cd /usr/local/tomcat/webapps/geoserver/WEB-INF/lib
 wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.18.3/extensions/geoserver-2.18.3-vectortiles-plugin.zip
 unzip geoserver-2.18.3-vectortiles-plugin.zip
 ```
+
+Enable CORS:
+
+- 
+
+Set GeoFence rules:
+
+- 

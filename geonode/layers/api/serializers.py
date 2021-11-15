@@ -108,7 +108,7 @@ class MinimalLayerSerializer(DynamicModelSerializer):
         name = 'layer'
         view_name = 'layers-list'
         fields = (
-            'pk', 'name', 'eovs'
+            'pk', 'name', 'title', 'eovs'
         )
 
     name = serializers.CharField(read_only=True)
