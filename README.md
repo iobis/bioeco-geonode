@@ -78,5 +78,11 @@ Set GeoFence rules:
 
 ### Deploy
 
-- 
-- Set admin passwords in `.env`
+- Git clone
+- Set admin passwords and domains in `.env`
+- Create `/root/geonode_data` and `/root/geoserver_data`
+- Start containers
+
+```
+docker-compose -f docker-compose.yml up --build -d
+```
