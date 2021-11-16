@@ -11,9 +11,9 @@ x-common-django:
   volumes:
     - '.:/usr/src/geonode'
     - statics:/mnt/volumes/statics
-    - geoserver-data-dir:/geoserver_data/data
+    - /root/geoserver_data:/geoserver_data/data
     - backup-restore:/backup_restore
-    - data:/data
+    - /root/geonode_data:/data
     - tmp:/tmp
 
 services:

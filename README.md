@@ -75,3 +75,8 @@ Enable CORS:
 Set GeoFence rules:
 
 - 
+
+### Deploy
+
+- 
+- Set admin passwords in `.env`
