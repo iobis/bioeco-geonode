@@ -68,9 +68,37 @@ wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.18.3/extensions
 unzip geoserver-2.18.3-vectortiles-plugin.zip
 ```
 
-Enable CORS:
+Enable CORS, see https://docs.geoserver.org/latest/en/user/production/container.html:
 
-- 
+```
+docker exec -it geoserver4geonode /bin/bash
+cd /usr/local/tomcat/webapps/geoserver/WEB-INF
+vim web.xml
+```
+
+```
+<filter>
+  <filter-name>cross-origin</filter-name>
+  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+  <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>*</param-value>
+  </init-param>
+</filter>
+
+<filter-mapping>
+  <filter-name>cross-origin</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 Set GeoFence rules:
 

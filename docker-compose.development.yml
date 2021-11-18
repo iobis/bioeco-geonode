@@ -7,7 +7,7 @@ x-common-django:
   image: geonode/geonode:latest
   restart: on-failure
   env_file:
-    - .env_dev
+    - .env
   volumes:
     - '.:/usr/src/geonode'
     - statics:/mnt/volumes/statics
