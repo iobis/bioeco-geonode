@@ -2,6 +2,46 @@
 
 This is a fork of https://github.com/GeoNode/geonode with customizations for the GOOS BioEco data portal.
 
+## Installation
+### GeoNode deployment
+- Git clone
+- Checkout `eov_develop` branch
+- Copy `.env_prod` to `.env`
+- Set admin passwords, email settings, and domains in `.env`
+- Start containers
+
+```
+docker-compose -f docker-compose.yml up --build -d
+```
+
+- Change GeoNode and GeoServer passwords if necessary
+
+### Data migration
+
+- Run the first part of the notebook at https://github.com/iobis/bioeco-etl
+- Copy over all shapefiles and JSON files
+
+```
+cd output
+scp -r * root@geonode.bioeco.goosocean.org:/root/bioeco-geonode/import/
+```
+
+- Import layers (if this fails, check if the GeoServer password matches the one in `.env`)
+
+```
+docker exec -it django4geonode
+python manage.py importlayers --verbosity=2 --overwrite import
+```
+
+- Import entities
+
+```
+python manage.py loaddata import/users.json
+python manage.py loaddata import/eovs.json
+```
+
+- Update database
+
 ## How to
 ### Develop
 
@@ -104,13 +144,4 @@ Set GeoFence rules:
 
 - 
 
-### Deploy
-
-- Git clone
-- Set admin passwords and domains in `.env`
-- Create `/root/geonode_data` and `/root/geoserver_data`
-- Start containers
-
-```
-docker-compose -f docker-compose.yml up --build -d
-```
+Add filter for `viewparams`.
