@@ -102,6 +102,8 @@ services:
       - backup-restore:/backup_restore
       - data:/data
       - tmp:/tmp
+      - geoserver-web-inf:/usr/local/tomcat/webapps/geoserver/WEB-INF
+        
     restart: on-failure
 
   data-dir-conf:
@@ -156,3 +158,6 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-tmp
   rabbitmq:
     name: ${COMPOSE_PROJECT_NAME}-rabbitmq
+  geoserver-web-inf:
+    name: ${COMPOSE_PROJECT_NAME}-gswebinf
+ 
