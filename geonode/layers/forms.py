@@ -45,6 +45,9 @@ class JSONField(forms.CharField):
 
 
 class LayerForm(ResourceBaseForm):
+
+    url = forms.URLField(label="Project website", required=False)
+
     class Meta(ResourceBaseForm.Meta):
         model = Layer
         exclude = ResourceBaseForm.Meta.exclude + (

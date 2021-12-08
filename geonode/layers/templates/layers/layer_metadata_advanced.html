@@ -37,7 +37,7 @@
       {% endblocktrans %}
     </p>
     {% block advanced_edit_form %}
-    <form id="metadata_update" class="form-horizontal" action="{% url "layer_metadata" layer.service_typename %}" method="POST">
+    <form novalidate id="metadata_update" class="form-horizontal" action="{% url "layer_metadata" layer.service_typename %}" method="POST">
 
       {% block metadata_uploaded_check %}
       {% if layer.metadata_uploaded_preserve %}
