@@ -123,37 +123,13 @@
           {% endblock thesauri %}
         </div>
 
-        {% block category %}
-        <div class="row">
-          <div class="col-md-12">
-            <label class="control-label required-field">{% trans "Category" %}</label>
-            <fieldset id="category_form">
-              {% autoescape off %}
-              {% for choice in category_form.category_choice_field.field.choices %}
-              <div class="col-md-6">
-                <label class="fancy-checkbox form_item_spacing">
-                    <input type="radio" name="category_choice_field" value="{{ choice.0 }}"
-                      {% ifequal category_form.initial choice.0 %} checked="checked" {% endifequal %} />
-                      {{ choice.1 }}
-                </label>
-              </div>
-              <!-- div class="radio col-md-6">
-                <input type="radio" name="category_choice_field" value="{{ choice.0 }}"
-                  {% ifequal category_form.initial choice.0 %} checked="checked" {% endifequal %}>
-                  {{ choice.1 }}
-                </input>
-              </div -->
-              {% endfor %}
-              {% endautoescape %}
-            </fieldset>
-          </div>
-          {% endblock category %}
-
           {% block other_tab %}{% endblock other_tab %}
 
           {% block attributes %}
-          <div class="col-md-12 grid-spacer">
+          <div class="col-md-12 form-controls">
             <h5>{% trans "Attributes" %}</h5>
+
+            <!--
             <label>{% trans "Use a custom template?" %}</label>
             <input type="checkbox" name="resource-use_featureinfo_custom_template" class="has-external-popover"
                 data-content="specifies wether or not use a custom GetFeatureInfo template." data-placement="right"
@@ -161,7 +137,9 @@
                 placeholder="specifies wether or not use a custom GetFeatureInfo template."
                 id="id_resource-use_featureinfo_custom_template"
                 {% if resource.use_featureinfo_custom_template %}checked{% endif %}>
-            <div id="layer-attributes-panel"
+            -->
+
+              <div id="layer-attributes-panel"
                 {% if resource.use_featureinfo_custom_template %}style="visibility: collapse;" {% endif %}>
                 {{ attribute_form.management_form }}
                 <table class="table table-striped table-bordered table-condensed">
@@ -189,13 +167,15 @@
             </div>
             {% endblock attributes %}
 
+            <!--
             {% block layer_custom_template %}
             <div id="layer-attributes-custom_template"
                   {% if not resource.use_featureinfo_custom_template %}style="visibility: collapse;" {% endif %}>
                 {{layer_form.featureinfo_custom_template}}
             </div>
             {% endblock layer_custom_template %}
-
+            -->
+            
             {% block point_of_contact %}
             <fieldset class="form-controls modal-forms modal hide fade" id="poc_form" >
               <h2>{% trans "Point of Contact" %}</h2>
