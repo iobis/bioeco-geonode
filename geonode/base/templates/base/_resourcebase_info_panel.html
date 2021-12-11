@@ -38,44 +38,6 @@
       {% endif %}
     </dd>
 
-    {% if resource.eovs.all %}
-    <dt>{% trans "EOVs" %}</dt>
-    <dd>
-      <ul>
-        {% for eov in resource.eovs.all %}
-          <li><a href="{{ eov.url }}" target="_blank">{{ eov.name }}</a></li>
-        {% endfor %}
-      </ul>
-    </dd>
-    {% endif %}
-
-    <dt>{% trans "Readiness level (requirements)" %}</dt>
-    <dd>
-      {% if resource.readiness_requirements %}
-        {{ resource.readiness_requirements }}
-      {% else %}
-        Not provided
-      {% endif %}
-    </dd>
-
-    <dt>{% trans "Readiness level (coordination)" %}</dt>
-    <dd>
-      {% if resource.readiness_coordination %}
-        {{ resource.readiness_coordination }}
-      {% else %}
-        Not provided
-      {% endif %}
-    </dd>
-
-    <dt>{% trans "Readiness level (data)" %}</dt>
-    <dd>
-      {% if resource.readiness_data %}
-        {{ resource.readiness_data }}
-      {% else %}
-        Not provided
-      {% endif %}
-    </dd>
-
     <!--
     {% if resource.date %}
     {% if resource.date_type == 'creation' %}

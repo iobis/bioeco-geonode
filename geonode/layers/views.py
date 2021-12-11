@@ -1051,11 +1051,6 @@ def layer_metadata(
             new_category = TopicCategory.objects.get(
                 id=int(category_form.cleaned_data['category_choice_field']))
 
-        new_eovs = layer_form.cleaned_data['eovs']
-        layer.eovs.clear()
-        if new_eovs:
-            layer.eovs.add(*new_eovs)
-
         for form in attribute_form.cleaned_data:
             la = Attribute.objects.get(id=int(form['id'].id))
             la.description = form["description"]

@@ -86,7 +86,7 @@ class LayerSerializer(ResourceBaseSerializer):
             'pk', 'uuid', 'name', 'workspace', 'store', 'storeType', 'charset',
             'is_mosaic', 'has_time', 'has_elevation', 'time_regex', 'elevation_regex',
             'use_featureinfo_custom_template', 'featureinfo_custom_template',
-            'default_style', 'styles', 'attribute_set', 'eovs', 'url'
+            'default_style', 'styles', 'attribute_set', 'url'
         )
 
     name = serializers.CharField(read_only=True)
@@ -108,7 +108,7 @@ class MinimalLayerSerializer(DynamicModelSerializer):
         name = 'layer'
         view_name = 'layers-list'
         fields = (
-            'pk', 'name', 'title', 'eovs'
+            'pk', 'name', 'title'
         )
 
     name = serializers.CharField(read_only=True)
