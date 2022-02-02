@@ -29,14 +29,15 @@ scp -r * root@geonode.bioeco.goosocean.org:/root/bioeco-geonode/import/
 - Import entities
 
 ```
+docker exec -it django4geonode /bin/bash
 python manage.py loaddata import/users.json
-python manage.py loaddata import/eovs.json
+~~~python manage.py loaddata import/eovs.json~~~
 ```
 
 - Import layers (if this fails, check if the GeoServer password matches the one in `.env`, GeoServer processing can take a while)
 
 ```
-docker exec -it django4geonode
+docker exec -it django4geonode /bin/bash
 python manage.py importlayers --verbosity=2 --overwrite import
 ```
 
@@ -204,4 +205,10 @@ python manage.py dumpdata layers.Layer > layers.json
 python manage.py dumpdata base.ResourceBase > resourcebase.json
 python manage.py dumpdata base.ContactRole > contactrole.json
 python manage.py loaddata users.json
+```
+
+### Update thumbnails
+
+```
+python manage.py sync_geonode_layers --updatethumbnails
 ```
