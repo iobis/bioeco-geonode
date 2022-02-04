@@ -49,6 +49,7 @@ where store = ''
 ```
 
 - Update database
+- cron.sh
 
 ### Set up GeoServer
 
@@ -204,4 +205,10 @@ python manage.py dumpdata layers.Layer > layers.json
 python manage.py dumpdata base.ResourceBase > resourcebase.json
 python manage.py dumpdata base.ContactRole > contactrole.json
 python manage.py loaddata users.json
+```
+
+### Thumbnails
+
+```
+python manage.py sync_geonode_layers --updatethumbnails
 ```
