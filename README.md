@@ -170,7 +170,7 @@ vim web.xml
 docker-compose -f docker-compose.development.yml up --build
 ```
 
-To reload uwsgi in case there is no autoreload:
+To reload uwsgi in case there is no autoreload (check pidfile location in `uwsgi.ini`):
 
 ```
 docker exec -it django4geonode /bin/bash
