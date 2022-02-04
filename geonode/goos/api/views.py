@@ -5,16 +5,14 @@ from geonode.base.models import ThesaurusKeyword
 from rest_framework.permissions import AllowAny
 
 
-class FastThesaurusKeywordSerializer(serializers.ModelSerializer):
+class EovKeywordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ThesaurusKeyword
-        #name = 'tkeywords'
-        #view_name = 'tkeywords-list'
-        fields = '__all__'
+        fields = ["id", "about", "alt_label"]
 
 
-class FastThesaurusKeywordViewSet(ListModelMixin, GenericViewSet):
+class EovKeywordViewSet(ListModelMixin, GenericViewSet):
     permission_classes = [AllowAny, ]
-    queryset = ThesaurusKeyword.objects.all()
-    serializer_class = FastThesaurusKeywordSerializer
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goos")
+    serializer_class = EovKeywordSerializer
