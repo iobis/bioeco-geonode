@@ -37,7 +37,25 @@ class MinimalLayerSerializer(DynamicModelSerializer):
 
 class EovKeywordViewSet(ListModelMixin, GenericViewSet):
     permission_classes = [AllowAny, ]
-    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goos")
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/eov")
+    serializer_class = EovKeywordSerializer
+
+
+class ReadinessDataKeywordViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny, ]
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/readiness/data")
+    serializer_class = EovKeywordSerializer
+
+
+class ReadinessRequirementsKeywordViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny, ]
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/readiness/requirements")
+    serializer_class = EovKeywordSerializer
+
+
+class ReadinessCoordinationKeywordViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny, ]
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/readiness/coordination")
     serializer_class = EovKeywordSerializer
 
 
