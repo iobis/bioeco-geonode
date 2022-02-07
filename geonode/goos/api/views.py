@@ -59,12 +59,16 @@ class ReadinessCoordinationKeywordViewSet(ListModelMixin, GenericViewSet):
     serializer_class = EovKeywordSerializer
 
 
-class EovFilterBackend(BaseFilterBackend):
+class GoosFilterBackend(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
 
         if request.query_params.get("eovs"):
             eov_ids = [eid for eid in request.query_params.get("eovs").split(",")]
             queryset = queryset.filter(tkeywords__in=eov_ids).distinct()
+
+        #if request.query_params.get("readiness_data"):
+        #    keywords = ThesaurusKeyword.objects.all()
+        #    print(keywords)
 
         return queryset
 
@@ -74,7 +78,7 @@ class MinimalLayerViewSet(DynamicModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [
         DynamicFilterBackend, DynamicSortingFilter, DynamicSearchFilter,
-        ExtentFilter, LayerPermissionsFilter, EovFilterBackend
+        ExtentFilter, LayerPermissionsFilter, GoosFilterBackend
     ]
     queryset = Layer.objects.all()
     serializer_class = MinimalLayerSerializer
