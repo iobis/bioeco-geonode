@@ -29,6 +29,8 @@ from dynamic_rest.fields.fields import DynamicRelationField
 from geonode.layers.models import Layer, Style, Attribute
 from geonode.base.api.serializers import ResourceBaseSerializer
 
+from geonode.base.models import ThesaurusKeyword
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -72,6 +74,16 @@ class AttributeSerializer(DynamicModelSerializer):
     attribute = serializers.CharField(read_only=True)
 
 
+class ThesaurusKeywordSerializer(DynamicModelSerializer):
+
+    class Meta:
+        model = ThesaurusKeyword
+        name = 'tkeywords'
+        fields = (
+            'id', 'alt_label', 'about'
+        )
+
+
 class LayerSerializer(ResourceBaseSerializer):
 
     def __init__(self, *args, **kwargs):
@@ -99,3 +111,5 @@ class LayerSerializer(ResourceBaseSerializer):
     styles = DynamicRelationField(StyleSerializer, embed=True, many=True, read_only=True)
 
     attribute_set = DynamicRelationField(AttributeSerializer, embed=True, many=True, read_only=True)
+
+    tkeywords = DynamicRelationField(ThesaurusKeywordSerializer, embed=True, many=True, read_only=True)
