@@ -426,7 +426,7 @@ GEONODE_CORE_APPS = (
 # GeoNode Apps
 GEONODE_APPS_ENABLE = ast.literal_eval(os.getenv("GEONODE_APPS_ENABLE", "True"))
 GEONODE_APPS_NAME = os.getenv("GEONODE_APPS_NAME", "Apps")
-GEONODE_APPS_NAV_MENU_ENABLE = ast.literal_eval(os.getenv("GEONODE_APPS_NAV_MENU_ENABLE", "True"))
+GEONODE_APPS_NAV_MENU_ENABLE = ast.literal_eval(os.getenv("GEONODE_APPS_NAV_MENU_ENABLE", "False"))
 
 GEONODE_INTERNAL_APPS = (
     # GeoNode internal apps
