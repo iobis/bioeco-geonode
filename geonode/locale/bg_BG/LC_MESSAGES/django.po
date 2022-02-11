@@ -5848,7 +5848,7 @@ msgstr "Добре дошли"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Въведение"
 
 #, fuzzy

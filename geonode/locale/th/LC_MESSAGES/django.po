@@ -5759,7 +5759,7 @@ msgstr "ยินดีต้อนรับ!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "เริ่มต้นการใช้งาน"
 
 #, fuzzy

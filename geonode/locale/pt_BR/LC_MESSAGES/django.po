@@ -5502,7 +5502,7 @@ msgstr "Recombinando um mapa"
 msgid "Welcome!"
 msgstr "Bem-vindo!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Iniciar &raquo;"
 
 msgid "Search for Data."

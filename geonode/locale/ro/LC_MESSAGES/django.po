@@ -5653,7 +5653,7 @@ msgstr "Bine ai venit!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Noțiuni de bază"
 
 #, fuzzy

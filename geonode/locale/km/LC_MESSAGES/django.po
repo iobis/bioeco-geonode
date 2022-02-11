@@ -5582,7 +5582,7 @@ msgstr "សូម​ស្វា​គម​ន៏​!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "ការ​ចាប់ផ្តើម"
 
 #, fuzzy

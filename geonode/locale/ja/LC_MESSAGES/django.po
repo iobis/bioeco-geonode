@@ -5619,7 +5619,7 @@ msgstr "ようこそ"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "はじめに"
 
 #, fuzzy

@@ -5637,7 +5637,7 @@ msgstr "Welkom!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Aan die slag"
 
 #, fuzzy

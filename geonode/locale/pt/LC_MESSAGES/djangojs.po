@@ -625,7 +625,7 @@ msgstr ""
 #~ "O Geonode é uma plataforma open source para partilha de mapas e "
 #~ "informação geoespacial."
 
-#~ msgid "Get Started &raquo;"
+#~ msgid "Documentation &raquo;"
 #~ msgstr "Iniciar &raquo;"
 
 #~ msgid "No"

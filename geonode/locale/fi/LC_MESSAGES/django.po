@@ -5610,7 +5610,7 @@ msgstr "Tervetuloa!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Aloittaminen"
 
 #, fuzzy

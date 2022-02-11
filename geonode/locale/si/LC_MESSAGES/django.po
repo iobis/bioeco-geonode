@@ -5643,7 +5643,7 @@ msgstr "ආයුබෝවන්!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "ඇරඹේ"
 
 #, fuzzy

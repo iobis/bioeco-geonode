@@ -5486,8 +5486,8 @@ msgstr "Remixing a Map"
 msgid "Welcome!"
 msgstr "Welcome!"
 
-msgid "Get Started &raquo;"
-msgstr "Get Started &raquo;"
+msgid "Documentation &raquo;"
+msgstr "Documentation &raquo;"
 
 msgid "Search for Data."
 msgstr "Search for Data."

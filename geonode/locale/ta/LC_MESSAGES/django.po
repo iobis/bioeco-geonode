@@ -5658,7 +5658,7 @@ msgstr "வரவேற்கிறோம்"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "தொடங்குதல்"
 
 #, fuzzy

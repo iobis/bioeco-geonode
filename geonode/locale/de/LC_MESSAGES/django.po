@@ -5514,7 +5514,7 @@ msgstr "Remixen eine Karte"
 msgid "Welcome!"
 msgstr "Willkommen!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Erste Schritte &raquo;"
 
 msgid "Search for Data."

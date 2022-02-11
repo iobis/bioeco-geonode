@@ -5627,7 +5627,7 @@ msgstr "Üdvözöljük!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Az első lépések"
 
 #, fuzzy

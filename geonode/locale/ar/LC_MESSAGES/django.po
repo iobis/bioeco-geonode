@@ -6189,7 +6189,7 @@ msgstr "التعديل على خريطة"
 msgid "Welcome!"
 msgstr "مرحبا!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "ابدأ &raquo;"
 
 msgid "Search for Data."

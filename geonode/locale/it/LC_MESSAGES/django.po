@@ -5053,7 +5053,7 @@ msgid "Welcome!"
 msgstr "Benvenuto!"
 
 #: geonode/templates/index.html:32
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Inizio &raquo;"
 
 #: geonode/templates/index.html:96

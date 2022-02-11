@@ -5616,7 +5616,7 @@ msgstr "Välkomna!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Komma igång"
 
 #, fuzzy

@@ -6328,7 +6328,7 @@ msgid "Welcome!"
 msgstr "Vitajte!"
 
 #, fuzzy
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Začať \""
 
 #, fuzzy

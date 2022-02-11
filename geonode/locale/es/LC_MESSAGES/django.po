@@ -5573,7 +5573,7 @@ msgstr "Reutilizar un mapa"
 msgid "Welcome!"
 msgstr "Bienvenido!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Primeros Pasos &raquo;"
 
 msgid "Search for Data."

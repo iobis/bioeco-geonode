@@ -5385,7 +5385,7 @@ msgstr "Μεταποίηση Χάρτη"
 msgid "Welcome!"
 msgstr "Καλώς ήρθατε!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Ξεκινήστε &raquo;"
 
 msgid "Search for Data."

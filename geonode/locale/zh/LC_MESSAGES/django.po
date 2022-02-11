@@ -5792,7 +5792,7 @@ msgstr "欢迎您！"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "入门"
 
 #, fuzzy

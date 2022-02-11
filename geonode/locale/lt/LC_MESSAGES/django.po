@@ -4932,7 +4932,7 @@ msgstr ""
 msgid "Welcome!"
 msgstr ""
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr ""
 
 msgid "Search for Data."

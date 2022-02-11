@@ -5983,7 +5983,7 @@ msgstr "시작페이지!"
 
 #, fuzzy
 #| msgid "Getting Started"
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "GeoNode 시작하기"
 
 #, fuzzy

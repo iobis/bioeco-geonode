@@ -5386,7 +5386,7 @@ msgstr "Modyfikowanie mapy"
 msgid "Welcome!"
 msgstr "Witamy!"
 
-msgid "Get Started &raquo;"
+msgid "Documentation &raquo;"
 msgstr "Zaczynajmy &raquo;"
 
 msgid "Search for Data."
