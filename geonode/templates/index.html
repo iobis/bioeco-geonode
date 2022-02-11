@@ -27,9 +27,16 @@
       <p>{% trans jumbotron_welcome_content %}</p>
       {% endwith %}
       {% if not custom_theme.jumbotron_cta_hide %}
-      <p><a class="btn btn-default btn-lg" target="_blank"
+      <p>
+        <a class="btn btn-default btn-lg" target="_blank"
           href="{{custom_theme.jumbotron_cta_link|default:"https://iobis.github.io/bioeco-docs/"}}"
-          role="button">{{custom_theme.jumbotron_cta_text|default:_("Documentation &raquo;")}}</a></p>
+          target="_blank"
+          role="button">{{custom_theme.jumbotron_cta_text|default:_("Documentation &raquo;")}}</a>
+        <a class="btn btn-default btn-lg" target="_blank"
+          href="https://bioeco.goosocean.org/"
+          target="_blank"
+          role="button">Go to map &raquo;</a>
+      </p>
       {% endif %}
   </div>
 </div>
