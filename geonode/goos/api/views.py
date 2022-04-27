@@ -41,6 +41,12 @@ class EovKeywordViewSet(ListModelMixin, GenericViewSet):
     serializer_class = EovKeywordSerializer
 
 
+class ReadinessKeywordViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny, ]
+    queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/readiness")
+    serializer_class = EovKeywordSerializer
+
+
 class ReadinessDataKeywordViewSet(ListModelMixin, GenericViewSet):
     permission_classes = [AllowAny, ]
     queryset = ThesaurusKeyword.objects.all().filter(about__icontains="goosocean.org/readiness/data")
