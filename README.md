@@ -162,6 +162,12 @@ vim web.xml
     - look into `GEOFENCE_SECURITY_ENABLED: 'False'`?
     - look into command `set_all_layers_public`?
 
+### Cron
+
+```
+0 * * * * /root/bioeco-geonode/cron.sh > /root/cron.log 2>&1
+```
+
 ## How to
 ### Develop
 
