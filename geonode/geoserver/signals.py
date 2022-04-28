@@ -79,6 +79,7 @@ def geoserver_post_save(instance, sender, created, **kwargs):
     # so we should select what will be handled here
     if isinstance(instance, Layer):
         instance.sops = None
+        instance.outputs = None
         instance_dict = model_to_dict(instance)
         payload = json_serializer_producer(instance_dict)
         try:
