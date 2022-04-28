@@ -47,7 +47,7 @@ class JSONField(forms.CharField):
 class LayerForm(ResourceBaseForm):
 
     url = forms.URLField(label="Project website", required=False)
-    obis_pub_interest = forms.TypedChoiceField(label="Interested in publishing to OBIS", coerce=lambda x: x == 'True', choices=((None, '--'), (False, 'No'), (True, 'Yes')))
+    obis_pub_interest = forms.TypedChoiceField(label="Interested in publishing to OBIS", coerce=lambda x: x == 'True', choices=((None, '--'), (False, 'No'), (True, 'Yes')), required=False)
 
     class Meta(ResourceBaseForm.Meta):
         model = Layer
