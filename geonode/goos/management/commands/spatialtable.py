@@ -62,7 +62,7 @@ class Command(BaseCommand):
             # populate spatial table
 
             for layer in layers:
-                print(layer.name)
+                print(f"Processing layer {layer.name}")
 
                 keywords = [keyword.id for keyword in layer.tkeywords.all()]
 
@@ -82,6 +82,7 @@ class Command(BaseCommand):
                 else:
                     print(f"Table {layer.name} not found")
 
+            #conn.rollback()
             conn.commit()
             conn.close()
 
