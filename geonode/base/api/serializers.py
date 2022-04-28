@@ -153,7 +153,7 @@ class LicenseSerializer(DynamicModelSerializer):
     class Meta:
         model = License
         name = 'License'
-        fields = ('identifier',)
+        fields = ('identifier', 'name', )
 
 
 class SpatialRepresentationTypeSerializer(DynamicModelSerializer):
