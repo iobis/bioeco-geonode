@@ -113,6 +113,20 @@
       {% if resource.in_obis %}Yes{% elif resource.in_obis is none %}-{% else %}No{% endif %}
     </dd>
 
+    <dt>{% trans "Funding" %}</dt>
+    <dd itemprop="description">
+    {% if resource.funding %}{{ resource.funding|safe }}{% endif %}
+    </dd>
+
+    <dt>{% trans "Funding sector" %}</dt>
+    <dd>
+      <ul>
+        {% for sector in resource.get_funding_sector_display %}
+        <li>{{ sector }}</li>
+        {% endfor %}
+      </ul>
+    </dd>
+
     {% if resource.category %}
     <dt>{% trans "Category" %}</dt>
     <dd><a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{% trans resource.category.gn_description %}</a> {% if resource.category.description %}<a href="#category-more" data-toggle="collapse" data-target=".category-more"><i class="fa fa-info-circle"></i></a>{% endif %}</dd>
