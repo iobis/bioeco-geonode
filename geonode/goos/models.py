@@ -24,7 +24,10 @@ class EovResource(models.Model):
 
     def get_funding_sector_display(self):
         funding_sector_dict = dict(FUNDING_SECTOR_CHOICES)
-        return [funding_sector_dict[sector] for sector in self.funding_sector]
+        if self.funding_sector is not None:
+            return [funding_sector_dict[sector] for sector in self.funding_sector]
+        else:
+            return None
 
     class Meta:
         abstract = True
