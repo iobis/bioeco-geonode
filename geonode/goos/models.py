@@ -10,6 +10,7 @@ class EovResource(models.Model):
     outputs = ArrayField(models.URLField(), verbose_name='Outputs', null=True, blank=True, help_text='List of outputs (products, applications), comma separated URLs.')
     obis_pub_interest = models.BooleanField(null=True, blank=True, verbose_name='Interest in publishing to OBIS')
     in_obis = models.BooleanField(null=True, blank=True, verbose_name='In OBIS')
+    funding = models.TextField(null=True, blank=True, verbose_name='Funding')
 
     class Meta:
         abstract = True
