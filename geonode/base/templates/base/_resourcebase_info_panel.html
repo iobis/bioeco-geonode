@@ -31,7 +31,7 @@
     <dd itemprop="description">{{ resource.abstract|safe }}</dd>
     {% endif %}
 
-    <dt>{% trans "URL" %}</dt>
+    <dt>{% trans "Project website" %}</dt>
     <dd>
       {% if resource.url %}
         <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
@@ -84,6 +84,34 @@
         </ul>
       </dd>
     {% endif %}
+
+    <dt>{% trans "SOPs" %}</dt>
+    <dd>
+      <ul>
+        {% for sop in resource.sops %}
+        <li><a href="{{ sop }}" target="_blank">{{ sop }}</a></li>
+        {% endfor %}
+      </ul>
+    </dd>
+
+    <dt>{% trans "Outputs" %}</dt>
+    <dd>
+      <ul>
+        {% for output in resource.outputs %}
+        <li><a href="{{ output }}" target="_blank">{{ output }}</a></li>
+        {% endfor %}
+      </ul>
+    </dd>
+
+    <dt>{% trans "Interested in publishing to OBIS" %}</dt>
+    <dd>
+      {% if resource.obis_pub_interest %}Yes{% elif resource.obis_pub_interest is none %}-{% else %}No{% endif %}
+    </dd>
+
+    <dt>{% trans "In OBIS" %}</dt>
+    <dd>
+      {% if resource.in_obis %}Yes{% elif resource.in_obis is none %}-{% else %}No{% endif %}
+    </dd>
 
     {% if resource.category %}
     <dt>{% trans "Category" %}</dt>
