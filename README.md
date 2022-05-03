@@ -11,7 +11,7 @@ This is a fork of https://github.com/GeoNode/geonode with customizations for the
 - Start containers
 
 ```
-docker-compose -f docker-compose.yml up --build -d
+docker-compose -f docker-compose.yml up --build --no-deps -d
 ```
 
 - Change GeoNode and GeoServer passwords if necessary
