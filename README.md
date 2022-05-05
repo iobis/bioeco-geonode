@@ -123,6 +123,7 @@ select * from public._all_layers %where%
 ```
 
 - Set style in layer publishing tab
+- Set all_layers cache expiration in the Tile Caching tab (GeoServer/GWC returning 400 was fixed by rebuilding the GeoServer container)
 - Enable CORS, see https://docs.geoserver.org/latest/en/user/production/container.html:
 
 ```
