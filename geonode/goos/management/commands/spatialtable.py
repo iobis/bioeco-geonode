@@ -13,51 +13,69 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        layers = Layer.objects.all()
-        
-        geouser = os.getenv('GEONODE_GEODATABASE', 'geonode_data')
-        geopwd = os.getenv('GEONODE_GEODATABASE_PASSWORD', 'geonode_data')
-        geodbname = os.getenv('GEONODE_GEODATABASE', 'geonode_data')
+        layers = Layer.objects.all().order_by('name')
+
         dbhost = os.getenv('DATABASE_HOST', 'db')
         dbport = os.getenv('DATABASE_PORT', 5432)
 
-        conn = None
+        #geonode_user = os.getenv('GEONODE_DATABASE', 'geonode')
+        #geonode_pwd = os.getenv('GEONODE_DATABASE_PASSWORD', 'geonode')
+        #geonode_dbname = os.getenv('GEONODE_DATABASE', 'geonode')
+
+        data_user = os.getenv('GEONODE_GEODATABASE', 'geonode_data')
+        data_pwd = os.getenv('GEONODE_GEODATABASE_PASSWORD', 'geonode_data')
+        data_dbname = os.getenv('GEONODE_GEODATABASE', 'geonode_data')
+
+        data_conn = None
         try:
-            conn = psycopg2.connect(dbname=geodbname, user=geouser, host=dbhost, port=dbport, password=geopwd)
-            cur = conn.cursor()
+
+            #geonode_conn = psycopg2.connect(dbname=geonode_dbname, user=geonode_user, host=dbhost, port=dbport, password=geonode_pwd)
+            #geonode_cur = geonode_conn.cursor()
+
+            data_conn = psycopg2.connect(dbname=data_dbname, user=data_user, host=dbhost, port=dbport, password=data_pwd)
+            data_cur = data_conn.cursor()
 
             # create spatial table
 
-            cur.execute("""
+            data_cur.execute("""
                 drop table if exists public._all_layers
             """)
-            cur.execute("""
+            data_cur.execute("""
                 create table if not exists public._all_layers
                 (pk int4, name varchar(128), keywords int4[], readiness_coordination int4, readiness_data int4, readiness_requirements int4)
             """)
-            cur.execute("""
+            data_cur.execute("""
                 select public.AddGeometryColumn('public', '_all_layers', 'the_geom', 4326, 'GeometryCollection', 2)
             """)
-            cur.execute("""
+            data_cur.execute("""
                 delete from public._all_layers
             """)
 
             # create indexes
 
-            cur.execute("create index if not exists ix_all_pk on public._all_layers using btree (pk)")
-            cur.execute("create index if not exists ix_all_name on public._all_layers using btree (name)")
-            cur.execute("create index if not exists ix_all_coordination on public._all_layers using btree (readiness_coordination)")
-            cur.execute("create index if not exists ix_all_data on public._all_layers using btree (readiness_data)")
-            cur.execute("create index if not exists ix_all_requirements on public._all_layers using btree (readiness_requirements)")
-            cur.execute("create index if not exists ix_all_keywords on public._all_layers using gin (keywords)")
-            cur.execute("create index if not exists ix_all_geom on public._all_layers using gist (the_geom)")
+            data_cur.execute("create index if not exists ix_all_pk on public._all_layers using btree (pk)")
+            data_cur.execute("create index if not exists ix_all_name on public._all_layers using btree (name)")
+            data_cur.execute("create index if not exists ix_all_coordination on public._all_layers using btree (readiness_coordination)")
+            data_cur.execute("create index if not exists ix_all_data on public._all_layers using btree (readiness_data)")
+            data_cur.execute("create index if not exists ix_all_requirements on public._all_layers using btree (readiness_requirements)")
+            data_cur.execute("create index if not exists ix_all_keywords on public._all_layers using gin (keywords)")
+            data_cur.execute("create index if not exists ix_all_geom on public._all_layers using gist (the_geom)")
 
             # get layer table names
 
-            cur.execute("""
-                select table_name from information_schema.tables where table_schema = 'public' and table_type = 'BASE TABLE'
+            #geonode_cur.execute("""
+            #    select name from public.layers_layer
+            #""")
+            #layer_names = [row[0] for row in geonode_cur.fetchall()]
+
+            data_cur.execute("""
+                select table_name, f_geometry_column, srid
+                from information_schema.tables
+                left join geometry_columns gc on gc.f_table_name = tables.table_name
+                where table_schema = 'public' and table_type = 'BASE TABLE' and f_geometry_column is not null
             """)
-            table_names = [row[0] for row in cur.fetchall()]
+            rows = data_cur.fetchall()
+            table_info = { row[0]: (row[1], row[2]) for row in rows }
 
             # populate spatial table
 
@@ -66,8 +84,11 @@ class Command(BaseCommand):
 
                 keywords = [keyword.id for keyword in layer.tkeywords.all()]
 
-                if layer.name in table_names:
-                    cur.execute("""
+                if layer.name in table_info:
+                    if table_info[layer.name][1] == 0:
+                        print(f"ERROR: Table {layer.name} has SRID 0")
+                        continue
+                    q = f"""
                         insert into public._all_layers (pk, name, keywords, readiness_coordination, readiness_data, readiness_requirements, the_geom)
                         select
                             %s as pk,
@@ -76,15 +97,17 @@ class Command(BaseCommand):
                             %s as readiness_coordination,
                             %s as readiness_data,
                             %s as readiness_requirements,
-                            ST_ForceCollection(st_transform(the_geom, 4326)) as the_geom
-                        from public.""" + layer.name, (layer.pk, layer.name, keywords, None, None, None)
-                    )
+                            ST_ForceCollection(st_transform({table_info[layer.name][0]}, 4326)) as the_geom
+                        from public.\"{layer.name}\""""
+                    data_cur.execute(q, (layer.pk, layer.name, keywords, None, None, None))
                 else:
-                    print(f"Table {layer.name} not found")
+                    print(f"ERROR: Table {layer.name} not found")
 
-            #conn.rollback()
-            conn.commit()
-            conn.close()
+            #data_conn.rollback()
+            data_conn.commit()
+            data_conn.close()
 
         except Exception as e:
-            print(e)
+            import traceback
+            print(traceback.format_exc())
+            print(f"ERROR: {e}")
