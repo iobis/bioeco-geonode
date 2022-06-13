@@ -72,13 +72,13 @@ class GoosFilterBackend(BaseFilterBackend):
             eov_ids = [eid for eid in request.query_params.get("eovs").split(",")]
             queryset = queryset.filter(tkeywords__in=eov_ids).distinct()
 
+        if request.query_params.get("subvariables"):
+            sv_ids = [svid for svid in request.query_params.get("subvariables").split(",")]
+            queryset = queryset.filter(tkeywords__in=sv_ids).distinct()
+
         if request.query_params.get("readiness"):
             readiness_ids = [rid for rid in request.query_params.get("readiness").split(",")]
             queryset = queryset.filter(tkeywords__in=readiness_ids).distinct()
-
-        #if request.query_params.get("readiness_data"):
-        #    keywords = ThesaurusKeyword.objects.all()
-        #    print(keywords)
 
         return queryset
 
