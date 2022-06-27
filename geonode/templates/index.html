@@ -23,9 +23,7 @@
       <h1>{% trans jumbotron_welcome_title %}</h1>
       {% endwith %}
       <p></p>
-      {% with jumbotron_welcome_content=custom_theme.jumbotron_welcome_content|default:"The GOOS Biology and Ecosystems Panel is made up of biology and ecosystem experts from around the world who provide guidance to the GOOS community. It aims to provide a better, clearer understanding of marine life to meet universal goals in sustainable development and conservation."|template_trans %}
-      <p>{% trans jumbotron_welcome_content %}</p>
-      {% endwith %}
+      <p>The GOOS BioEco Portal is a publicly available tool to monitor the status of the marine biological observing system. The GEONODE is the back-end interface where registered users can upload, edit and manage their monitoring program details including which EOVs and EBVs are monitored; spatial and temporal information; status of the program; data availability and licences; standardisation and protocols; as well as links to applications, tools and outputs based on the collected observations. This GeoNode is hosted and maintained by the secretariat of the Ocean Biodiversity Information System (OBIS) based at the IOC Project Office for IODE in Oostende, Belgium as a service to support the Global Ocean Observing System Biology and Ecosystem Panel.</p>
       {% if not custom_theme.jumbotron_cta_hide %}
       <p>
         <a class="btn btn-default btn-lg" target="_blank"
