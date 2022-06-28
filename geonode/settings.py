@@ -928,7 +928,7 @@ ACTSTREAM_SETTINGS = {
 
 # Email for users to contact admins.
 THEME_ACCOUNT_CONTACT_EMAIL = os.getenv(
-    'THEME_ACCOUNT_CONTACT_EMAIL', 'admin@example.com'
+    'THEME_ACCOUNT_CONTACT_EMAIL', 'it@iode.org'
 )
 
 #
