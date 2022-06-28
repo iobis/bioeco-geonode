@@ -174,6 +174,8 @@ vim web.xml
 
 Configure `DJANGO_EMAIL_HOST` and others in `.env`. Set up postfix on host, in config check `mynetworks` (should include container IP) and `inet_interfaces` (should include host IP).
 
+Also set site name in admin module.
+
 ```
 root@bioeco-geonode:~/bioeco-geonode# cat /etc/postfix/main.cf
 # See /usr/share/postfix/main.cf.dist for a commented, more complete version
