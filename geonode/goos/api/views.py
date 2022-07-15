@@ -80,6 +80,9 @@ class GoosFilterBackend(BaseFilterBackend):
             readiness_ids = [rid for rid in request.query_params.get("readiness").split(",")]
             queryset = queryset.filter(tkeywords__in=readiness_ids).distinct()
 
+        if request.query_params.get("in_obis"):
+            queryset = queryset.filter(in_obis=True).distinct()
+
         return queryset
 
 
