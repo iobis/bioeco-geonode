@@ -1,6 +1,5 @@
 from rest_framework import viewsets, serializers
 from rest_framework.mixins import ListModelMixin
-from rest_framework.viewsets import GenericViewSet
 from geonode.base.models import ThesaurusKeyword
 from rest_framework.permissions import AllowAny
 from dynamic_rest.filters import BaseFilterBackend
@@ -15,6 +14,11 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from oauth2_provider.contrib.rest_framework import OAuth2Authentication
 from geonode.base.api.pagination import GeoNodeApiPagination
 from geonode.layers.api.permissions import LayerPermissionsFilter
+from rest_framework.viewsets import GenericViewSet, ViewSet
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.db import connections
+from psycopg2.extras import NamedTupleCursor, DictCursor
 
 
 class EovKeywordSerializer(serializers.ModelSerializer):
@@ -96,3 +100,20 @@ class MinimalLayerViewSet(DynamicModelViewSet):
     queryset = Layer.objects.all()
     serializer_class = MinimalLayerSerializer
     pagination_class = GeoNodeApiPagination
+
+
+class LayerStatistics(ViewSet):
+    def list(self, request, format=None):
+        conn = connections['default']
+        conn.ensure_connection()
+        with conn.connection.cursor(cursor_factory=DictCursor) as cursor:
+            cursor.execute("""
+                select
+                sum(case when in_obis is false then 1 else 0 end) as in_obis_false,
+                sum(case when in_obis is true then 1 else 0 end) as in_obis_true,
+                sum(case when cardinality(sops) > 0 then 1 else 0 end) as has_sops
+                from layers_layer
+            """)
+            row = cursor.fetchone()
+
+        return Response({ k: v for k, v in row.items() })

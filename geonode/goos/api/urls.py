@@ -1,4 +1,5 @@
 from geonode.api.urls import router
+from django.urls import path
 
 from . import views
 
@@ -10,5 +11,6 @@ router.register(r'readiness_requirements', views.ReadinessRequirementsKeywordVie
 router.register(r'readiness_coordination', views.ReadinessCoordinationKeywordViewSet, 'readiness_coordination')
 
 router.register(r'layers_minimal', views.MinimalLayerViewSet, 'layers_minimal')
+router.register(r'layer_statistics', views.LayerStatistics, 'layer_statistics')
 
 urlpatterns = []
