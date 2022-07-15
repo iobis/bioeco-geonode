@@ -42,7 +42,7 @@ class Command(BaseCommand):
             """)
             data_cur.execute("""
                 create table if not exists public._all_layers
-                (pk int4, name varchar(128), keywords int4[], readiness_coordination int4, readiness_data int4, readiness_requirements int4)
+                (pk int4, name varchar(128), keywords int4[], readiness_coordination int4, readiness_data int4, readiness_requirements int4, in_obis boolean)
             """)
             data_cur.execute("""
                 select public.AddGeometryColumn('public', '_all_layers', 'the_geom', 4326, 'GeometryCollection', 2)
@@ -60,6 +60,7 @@ class Command(BaseCommand):
             data_cur.execute("create index if not exists ix_all_requirements on public._all_layers using btree (readiness_requirements)")
             data_cur.execute("create index if not exists ix_all_keywords on public._all_layers using gin (keywords)")
             data_cur.execute("create index if not exists ix_all_geom on public._all_layers using gist (the_geom)")
+            data_cur.execute("create index if not exists ix_all_inobis on public._all_layers using btree (in_obis)")
 
             # get layer table names
 
@@ -89,17 +90,18 @@ class Command(BaseCommand):
                         print(f"ERROR: Table {layer.name} has SRID 0")
                         continue
                     q = f"""
-                        insert into public._all_layers (pk, name, keywords, readiness_coordination, readiness_data, readiness_requirements, the_geom)
+                        insert into public._all_layers (pk, name, in_obis, keywords, readiness_coordination, readiness_data, readiness_requirements, the_geom)
                         select
                             %s as pk,
                             %s as name,
+                            %s as in_obis,
                             %s as keywords,
                             %s as readiness_coordination,
                             %s as readiness_data,
                             %s as readiness_requirements,
                             ST_ForceCollection(st_transform({table_info[layer.name][0]}, 4326)) as the_geom
                         from public.\"{layer.name}\""""
-                    data_cur.execute(q, (layer.pk, layer.name, keywords, None, None, None))
+                    data_cur.execute(q, (layer.pk, layer.name, layer.in_obis, keywords, None, None, None))
                 else:
                     print(f"ERROR: Table {layer.name} not found")
 
