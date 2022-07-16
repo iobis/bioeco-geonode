@@ -115,6 +115,9 @@
             <div class="form_item_spacing thesauri_keywords" id="tadv_req">
               <p>
               <label for="{{ field.thesaurus_id }}">{{ field.label }}</label>
+              {% if field.help_text %}
+              <span class="external-popover" data-content="{{field.help_text}}" data-original-title="" title=""><strong><i class="fa fa fa-question-circle fa-1x"></i></strong></span>
+              {% endif %}
               {{ field }}
               </p>
             </div>

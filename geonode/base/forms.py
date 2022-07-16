@@ -320,16 +320,17 @@ class ThesaurusAvailableForm(forms.Form):
         lang = get_language()
         for item in Thesaurus.objects.all().order_by('order', 'id'):
             tname = self._get_thesauro_title_label(item, lang)
+            help_text = self._get_thesauro_description(item, lang)
             if item.card_max == 0:
                 continue
             elif item.card_max == 1 and item.card_min == 0:
-                self.fields[f"{item.id}"] = self._define_choicefield(item, False, tname, lang)
+                self.fields[f"{item.id}"] = self._define_choicefield(item, False, tname, lang, help_text)
             elif item.card_max == 1 and item.card_min == 1:
-                self.fields[f"{item.id}"] = self._define_choicefield(item, True, tname, lang)
+                self.fields[f"{item.id}"] = self._define_choicefield(item, True, tname, lang, help_text)
             elif item.card_max == -1 and item.card_min == 0:
-                self.fields[f"{item.id}"] = self._define_multifield(item, False, tname, lang)
+                self.fields[f"{item.id}"] = self._define_multifield(item, False, tname, lang, help_text)
             elif item.card_max == -1 and item.card_min == 1:
-                self.fields[f"{item.id}"] = self._define_multifield(item, True, tname, lang)
+                self.fields[f"{item.id}"] = self._define_multifield(item, True, tname, lang, help_text)
 
     def cleanx(self, x):
         cleaned_values = []
@@ -341,20 +342,22 @@ class ThesaurusAvailableForm(forms.Form):
                 cleaned_values.append(value)
         return ThesaurusKeyword.objects.filter(id__in=flatten(cleaned_values))
 
-    def _define_multifield(self, item, required, tname, lang):
+    def _define_multifield(self, item, required, tname, lang, help_text):
         return MultipleChoiceField(
             choices=self._get_thesauro_keyword_label(item, lang),
             widget=autocomplete.Select2Multiple(
                 url=f"/base/thesaurus_available/?sysid={item.id}&lang={lang}",
                 attrs={"class": "treq" if required else ""},
             ),
+            help_text=f"{help_text}",
             label=f"{tname}",
             required=False,
         )
 
-    def _define_choicefield(self, item, required, tname, lang):
+    def _define_choicefield(self, item, required, tname, lang, help_text):
         return models.ChoiceField(
             label=f"{tname}",
+            help_text=f"{help_text}",
             required=False,
             widget=forms.Select(attrs={"class": "treq" if required else ""}),
             choices=self._get_thesauro_keyword_label(item, lang))
@@ -378,6 +381,10 @@ class ThesaurusAvailableForm(forms.Form):
         if not tname:
             return Thesaurus.objects.get(id=item.id).title
         return tname.first()
+
+    @staticmethod
+    def _get_thesauro_description(item, lang):
+        return Thesaurus.objects.get(id=item.id).description
 
 
 class ResourceBaseDateTimePicker(DateTimePicker):
