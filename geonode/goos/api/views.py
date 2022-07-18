@@ -112,8 +112,8 @@ class LayerStatistics(ViewSet):
         with conn.connection.cursor(cursor_factory=DictCursor) as cursor:
             cursor.execute("""
                 select
-                sum(case when in_obis is false then 1 else 0 end) as in_obis_false,
-                sum(case when in_obis is true then 1 else 0 end) as in_obis_true,
+                sum(case when data_in_obis = 'no' then 1 else 0 end) as in_obis_false,
+                sum(case when data_in_obis = 'some' or data_in_obis = 'all' then 1 else 0 end) as in_obis_true,
                 sum(case when cardinality(sops) > 0 then 1 else 0 end) as has_sops
                 from layers_layer
             """)
