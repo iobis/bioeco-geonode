@@ -5,6 +5,15 @@ import psycopg2
 import json
 
 
+def is_in_obis(value):
+    if value is None:
+        return None
+    elif value == "all" or value == "some":
+        return True
+    else:
+        return False
+
+
 class Command(BaseCommand):
     help = "Create table combining all spatial features"
 
@@ -101,7 +110,7 @@ class Command(BaseCommand):
                             %s as readiness_requirements,
                             ST_ForceCollection(st_transform({table_info[layer.name][0]}, 4326)) as the_geom
                         from public.\"{layer.name}\""""
-                    data_cur.execute(q, (layer.pk, layer.name, layer.in_obis, keywords, None, None, None))
+                    data_cur.execute(q, (layer.pk, layer.name, is_in_obis(layer.data_in_obis), keywords, None, None, None))
                 else:
                     print(f"ERROR: Table {layer.name} not found")
 

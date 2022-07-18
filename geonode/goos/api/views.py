@@ -87,6 +87,9 @@ class GoosFilterBackend(BaseFilterBackend):
         if request.query_params.get("in_obis"):
             queryset = queryset.filter(in_obis=True).distinct()
 
+        if request.query_params.get("data_in_obis"):
+            queryset = queryset.filter(data_in_obis__in=["all", "some"]).distinct()
+
         return queryset
 
 

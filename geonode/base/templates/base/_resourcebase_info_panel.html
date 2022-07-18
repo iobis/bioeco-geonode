@@ -108,9 +108,9 @@
       {% if resource.obis_pub_interest %}Yes{% elif resource.obis_pub_interest is none %}-{% else %}No{% endif %}
     </dd>
 
-    <dt>{% trans "In OBIS" %}</dt>
+    <dt>{% trans "Data in OBIS" %}</dt>
     <dd>
-      {% if resource.in_obis %}Yes{% elif resource.in_obis is none %}-{% else %}No{% endif %}
+      {% if resource.data_in_obis %}{{ resource.get_data_in_obis_display }}{% endif %}
     </dd>
 
     <dt>{% trans "Funding" %}</dt>

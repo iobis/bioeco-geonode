@@ -99,7 +99,7 @@ class LayerSerializer(ResourceBaseSerializer):
             'is_mosaic', 'has_time', 'has_elevation', 'time_regex', 'elevation_regex',
             'use_featureinfo_custom_template', 'featureinfo_custom_template',
             'default_style', 'styles', 'attribute_set', 'url', 'tkeywords', 'sops',
-            'outputs', 'obis_pub_interest', 'in_obis', 'funding', 'funding_sector',
+            'outputs', 'obis_pub_interest', 'data_in_obis', 'funding', 'funding_sector',
             'get_funding_sector_display'
         )
 
