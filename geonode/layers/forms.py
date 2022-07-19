@@ -32,7 +32,7 @@ from geonode.utils import check_ogc_backend
 import json
 from geonode.utils import unzip_file
 from geonode.layers.models import Layer, Attribute
-from geonode.goos.models import FUNDING_SECTOR_CHOICES
+from geonode.goos.models import FUNDING_SECTOR_CHOICES, DATA_IN_OBIS_CHOICES
 
 
 class JSONField(forms.CharField):
@@ -49,8 +49,11 @@ class LayerForm(ResourceBaseForm):
 
     url = forms.URLField(label="Project website", required=False)
     obis_pub_interest = forms.TypedChoiceField(label="Interested in publishing to OBIS", coerce=lambda x: x == 'True', choices=((None, '--'), (False, 'No'), (True, 'Yes')), required=False)
-    #in_obis = forms.TypedChoiceField(label="In OBIS", coerce=lambda x: x == 'True', choices=((None, '--'), (False, 'No'), (True, 'Yes')), required=False)
-    data_in_obis = forms.ChoiceField(label="Data in OBIS", required=False)
+    data_in_obis = forms.ChoiceField(
+        label="Data in OBIS",
+        required=False,
+        choices=DATA_IN_OBIS_CHOICES
+    )
     funding_sector = forms.MultipleChoiceField(
         label='Funding sector',
         required=False,
