@@ -172,7 +172,7 @@ vim web.xml
 
 ### Email
 
-Configure `DJANGO_EMAIL_HOST` and others in `.env`. Set up postfix on host, in config check `mynetworks` (should include container IP) and `inet_interfaces` (should include host IP).
+Configure `DJANGO_EMAIL_HOST` and others in `.env`. Set up postfix on host, in config check `myhostname`, `mynetworks` (should include container IP) and `inet_interfaces` (should include host IP).
 
 Also set site name in admin module.
 
