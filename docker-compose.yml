@@ -1,5 +1,4 @@
 version: '3.4'
-services:
 
 # Common Django template for GeoNode and Celery services below
 x-common-django:
@@ -66,23 +65,23 @@ services:
       - "${HTTPS_PORT}:443"
     volumes:
       - nginx-confd:/etc/nginx
-      - nginx-certificates:/geonode-certificates
+      - /root/certs:/geonode-certificates
       - statics:/mnt/volumes/statics
     restart: on-failure
 
   # Gets and installs letsencrypt certificates
-  letsencrypt:
-    image: geonode/spcgeonode:letsencrypt-3.1
-    build: ./scripts/docker/letsencrypt/
-    container_name: letsencrypt4${COMPOSE_PROJECT_NAME}
-    environment:
-      - HTTPS_HOST=${HTTPS_HOST}
-      - HTTP_HOST=${HTTP_HOST}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
-    volumes:
-      - nginx-certificates:/geonode-certificates
-    restart: on-failure
+  #  letsencrypt:
+  #  image: geonode/spcgeonode:letsencrypt-3.1
+  #  build: ./scripts/docker/letsencrypt/
+  #  container_name: letsencrypt4${COMPOSE_PROJECT_NAME}
+  #  environment:
+  #    - HTTPS_HOST=${HTTPS_HOST}
+  #    - HTTP_HOST=${HTTP_HOST}
+  #    - ADMIN_EMAIL=${ADMIN_EMAIL}
+  #    - LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
+  #  volumes:
+  #    - nginx-certificates:/geonode-certificates
+  #  restart: on-failure
 
   # Geoserver backend
   geoserver:
@@ -103,7 +102,7 @@ services:
       - data:/data
       - tmp:/tmp
       - geoserver-web-inf:/usr/local/tomcat/webapps/geoserver/WEB-INF
-        
+
     restart: on-failure
 
   data-dir-conf:
@@ -127,7 +126,7 @@ services:
     restart: on-failure
     # uncomment to enable remote connections to postgres
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
 
   # Vanilla RabbitMQ service. This is needed by celery
   rabbitmq:
@@ -142,8 +141,8 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-statics
   nginx-confd:
     name: ${COMPOSE_PROJECT_NAME}-nginxconfd
-  nginx-certificates:
-    name: ${COMPOSE_PROJECT_NAME}-nginxcerts
+    #  nginx-certificates:
+    #name: ${COMPOSE_PROJECT_NAME}-nginxcerts
   geoserver-data-dir:
     name: ${COMPOSE_PROJECT_NAME}-gsdatadir
   dbdata:
@@ -160,4 +159,3 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-rabbitmq
   geoserver-web-inf:
     name: ${COMPOSE_PROJECT_NAME}-gswebinf
- 
